@@ -357,7 +357,8 @@ class Function(Application, Expr):
         True
 
         """
-        return True
+        return False
+        
 
     @cacheit
     def __new__(cls, *args, **options):
@@ -729,6 +730,10 @@ class AppliedUndef(Function):
         args = [arg._sage_() for arg in self.args]
         func = sage.function(fname)(*args)
         return func
+
+    @property
+    def _diff_wrt(self):
+        return True
 
 class UndefinedFunction(FunctionClass):
     """
